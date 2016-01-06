@@ -13,7 +13,7 @@ USAGE
 
  3. Configure the toolbar of summernote like below.
 
-    - ```
+```
 $('#summernote').summernote({
     toolbar: [
         ...
@@ -28,7 +28,8 @@ OPTIONS
 
  - `print.stylesheet_url`
      - summernote-ext-print uses(inherit) styles/css of original document by default. But if you want to use different styles for printing, set a url of stylesheet file on this.
-     - ```
+
+```
 $('#summernote').summernote({
     toolbar: [
         ...
