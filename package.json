@@ -1,8 +1,11 @@
 {
   "name": "summernote-ext-print",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Print plugin for summernote",
   "main": "summernote-ext-print.js",
+  "devDependencies": {
+    "summernote": ">=0.7.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -19,5 +22,5 @@
   "bugs": {
     "url": "https://github.com/lqez/summernote-ext-print/issues"
   },
-  "homepage": "lqez.github.io/summernote-ext-print"
+  "homepage": "http://lqez.github.io/summernote-ext-print"
 }
