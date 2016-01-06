@@ -3,6 +3,9 @@ Print plugin for Summernote
 
 This plugin allows summernote prints its document, not whole web page. 
 
+DEMO PAGE : <http://lqez.github.io/summernote-ext-print/>
+
+
 USAGE
 -----
 
