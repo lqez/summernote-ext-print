@@ -47,13 +47,23 @@
       this.initialize = function () {
         var $container = options.dialogsInBody ? $(document.body) : $editor;
 
-        this.$printframe = $('<iframe name="summernote_print_frame" width="0" height="0" frameborder="0" src="about:blank"></iframe>');
+        this.$printframe = $('<iframe name="summernote_print_frame" width="0" height="0" frameborder="0" src="about:blank" style="display:none"></iframe>');
         this.$printframe.appendTo($container);
 
         var $head = this.$printframe.contents().find("head");
-        $("style, link[rel=stylesheet]", document).each(function(){
-          $head.append($(this).clone());
-        });
+        if (options.print && options.print.stylesheet_url) {
+          // Use dedicated styles
+          var css = document.createElement("link")
+          css.href = options.print.stylesheet_url;
+          css.rel = "stylesheet";
+          css.type = "text/css";
+          $head.append(css);
+        } else {
+          // Inherit styles from document
+          $("style, link[rel=stylesheet]", document).each(function(){
+            $head.append($(this).clone());
+          });
+        }
       };
 
       this.destroy = function () {
