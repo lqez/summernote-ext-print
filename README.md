@@ -29,7 +29,7 @@ $('#summernote').summernote({
 OPTIONS
 -------
 
- - `print.stylesheet_url`
+ - `print.stylesheetUrl`
      - summernote-ext-print uses(inherit) styles/css of original document by default. But if you want to use different styles for printing, set a url of stylesheet file on this.
 
 ```
@@ -39,7 +39,7 @@ $('#summernote').summernote({
         ['misc', ['print']]
     ],
     print: {
-        'stylesheet_url': 'some_url'
+        'stylesheetUrl': 'url_of_stylesheet_for_printing'
     }
     ...
 });
