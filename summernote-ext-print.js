@@ -11,9 +11,21 @@
     factory(window.jQuery);
   }
 }(function ($) {
+  // Extends lang for print plugin.
+  $.each({
+    'en-US': {
+      print: {
+        print: 'Print'
+      }
+    },
+    'ko-KR': {
+      print: {
+        print: '인쇄'
+      }
+    }
+  }, function (locale, strings) { $.extend($.summernote.lang[locale], strings); });
 
-  // Extends plugins for adding print.
-  //  - plugin is external module for customizing.
+  // Extends plugins for print plugin.
   $.extend($.summernote.plugins, {
     /**
      * @param {Object} context - context object has status of editor.
@@ -26,13 +38,14 @@
       var ui = $.summernote.ui;
       var $editor = context.layoutInfo.editor;
       var options = context.options;
+      var lang = options.langInfo;
 
       // add print button
       context.memo('button.print', function () {
         // create button
         var button = ui.button({
-          contents: '<i class="fa fa-print"/>',
-          tooltip: 'print',
+          contents: '<i class="fa fa-print"/>' + lang.print.print,
+          tooltip: lang.print.print,
           click: function () {
             self.$printframe.contents().find('body').html(context.invoke('code'));
             window.frames.summernotePrintFrame.window.focus();
