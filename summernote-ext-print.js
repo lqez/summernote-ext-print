@@ -35,8 +35,8 @@
           tooltip: 'print',
           click: function () {
             self.$printframe.contents().find('body').html(context.invoke('code'));
-            window.frames["summernote_print_frame"].window.focus();
-            window.frames["summernote_print_frame"].window.print();
+            window.frames.summernotePrintFrame.window.focus();
+            window.frames.summernotePrintFrame.window.print();
           }
         });
         // create jQuery object from button instance.
@@ -47,20 +47,23 @@
       this.initialize = function () {
         var $container = options.dialogsInBody ? $(document.body) : $editor;
 
-        this.$printframe = $('<iframe name="summernote_print_frame" width="0" height="0" frameborder="0" src="about:blank" style="display:none"></iframe>');
+        this.$printframe = $(
+          '<iframe name="summernotePrintFrame"' +
+          'width="0" height="0" frameborder="0" src="about:blank" style="display:none">' +
+          '</iframe>');
         this.$printframe.appendTo($container);
 
-        var $head = this.$printframe.contents().find("head");
-        if (options.print && options.print.stylesheet_url) {
+        var $head = this.$printframe.contents().find('head');
+        if (options.print && options.print.stylesheetUrl) {
           // Use dedicated styles
-          var css = document.createElement("link")
-          css.href = options.print.stylesheet_url;
-          css.rel = "stylesheet";
-          css.type = "text/css";
+          var css = document.createElement('link');
+          css.href = options.print.stylesheetUrl;
+          css.rel = 'stylesheet';
+          css.type = 'text/css';
           $head.append(css);
         } else {
           // Inherit styles from document
-          $("style, link[rel=stylesheet]", document).each(function(){
+          $('style, link[rel=stylesheet]', document).each(function () {
             $head.append($(this).clone());
           });
         }
