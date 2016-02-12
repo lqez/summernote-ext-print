@@ -12,7 +12,7 @@
   }
 }(function ($) {
   // Extends lang for print plugin.
-  $.each({
+  $.extend(true, $.summernote.lang, {
     'en-US': {
       print: {
         print: 'Print'
@@ -23,7 +23,7 @@
         print: '인쇄'
       }
     }
-  }, function (locale, strings) { $.extend($.summernote.lang[locale], strings); });
+  });
 
   // Extends plugins for print plugin.
   $.extend($.summernote.plugins, {
