@@ -22,6 +22,11 @@
       print: {
         print: '인쇄'
       }
+    },
+    'pt-BR': {
+      print: {
+        print: 'Imprimir'
+      }
     }
   });
 
