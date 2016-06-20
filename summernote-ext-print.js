@@ -53,8 +53,10 @@
           tooltip: lang.print.print,
           click: function () {
             self.$printframe.contents().find('body').html(context.invoke('code'));
-            window.frames.summernotePrintFrame.window.focus();
-            window.frames.summernotePrintFrame.window.print();
+            setTimeout(function () {
+              window.frames.summernotePrintFrame.window.focus();
+              window.frames.summernotePrintFrame.window.print();
+            }, 250);
           }
         });
         // create jQuery object from button instance.
@@ -67,7 +69,7 @@
 
         this.$printframe = $(
           '<iframe name="summernotePrintFrame"' +
-          'width="0" height="0" frameborder="0" src="about:blank" style="display:none">' +
+          'width="0" height="0" frameborder="0" src="about:blank" style="visibility:hidden">' +
           '</iframe>');
         this.$printframe.appendTo($container);
 
