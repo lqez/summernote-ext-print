@@ -11,9 +11,26 @@
     factory(window.jQuery);
   }
 }(function ($) {
+  // Extends lang for print plugin.
+  $.extend(true, $.summernote.lang, {
+    'en-US': {
+      print: {
+        print: 'Print'
+      }
+    },
+    'ko-KR': {
+      print: {
+        print: '인쇄'
+      }
+    },
+    'pt-BR': {
+      print: {
+        print: 'Imprimir'
+      }
+    }
+  });
 
-  // Extends plugins for adding print.
-  //  - plugin is external module for customizing.
+  // Extends plugins for print plugin.
   $.extend($.summernote.plugins, {
     /**
      * @param {Object} context - context object has status of editor.
@@ -26,17 +43,20 @@
       var ui = $.summernote.ui;
       var $editor = context.layoutInfo.editor;
       var options = context.options;
+      var lang = options.langInfo;
 
       // add print button
       context.memo('button.print', function () {
         // create button
         var button = ui.button({
-          contents: '<i class="fa fa-print"/>',
-          tooltip: 'print',
+          contents: '<i class="fa fa-print"/>' + lang.print.print,
+          tooltip: lang.print.print,
           click: function () {
             self.$printframe.contents().find('body').html(context.invoke('code'));
-            window.frames["summernote_print_frame"].window.focus();
-            window.frames["summernote_print_frame"].window.print();
+            setTimeout(function () {
+              window.frames.summernotePrintFrame.window.focus();
+              window.frames.summernotePrintFrame.window.print();
+            }, 250);
           }
         });
         // create jQuery object from button instance.
@@ -47,20 +67,23 @@
       this.initialize = function () {
         var $container = options.dialogsInBody ? $(document.body) : $editor;
 
-        this.$printframe = $('<iframe name="summernote_print_frame" width="0" height="0" frameborder="0" src="about:blank" style="display:none"></iframe>');
+        this.$printframe = $(
+          '<iframe name="summernotePrintFrame"' +
+          'width="0" height="0" frameborder="0" src="about:blank" style="visibility:hidden">' +
+          '</iframe>');
         this.$printframe.appendTo($container);
 
-        var $head = this.$printframe.contents().find("head");
-        if (options.print && options.print.stylesheet_url) {
+        var $head = this.$printframe.contents().find('head');
+        if (options.print && options.print.stylesheetUrl) {
           // Use dedicated styles
-          var css = document.createElement("link")
-          css.href = options.print.stylesheet_url;
-          css.rel = "stylesheet";
-          css.type = "text/css";
+          var css = document.createElement('link');
+          css.href = options.print.stylesheetUrl;
+          css.rel = 'stylesheet';
+          css.type = 'text/css';
           $head.append(css);
         } else {
           // Inherit styles from document
-          $("style, link[rel=stylesheet]", document).each(function(){
+          $('style, link[rel=stylesheet]', document).each(function () {
             $head.append($(this).clone());
           });
         }
