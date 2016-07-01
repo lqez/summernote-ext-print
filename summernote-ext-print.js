@@ -69,9 +69,9 @@
 
         this.$printframe = $(
           '<iframe name="summernotePrintFrame"' +
-          'width="0" height="0" frameborder="0" src="about:blank" style="display:none">' +
+          'width="0" height="0" frameborder="0" src="about:blank" style="visibility:hidden">' +
           '</iframe>');
-        this.$printframe.appendTo($container);
+        this.$printframe.appendTo($container.parent());
 
         var $head = this.$printframe.contents().find('head');
         if (options.print && options.print.stylesheetUrl) {
