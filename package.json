@@ -1,6 +1,6 @@
 {
   "name": "summernote-ext-print",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Print plugin for summernote",
   "main": "summernote-ext-print.js",
   "devDependencies": {
