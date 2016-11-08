@@ -45,35 +45,14 @@
       var options = context.options;
       var lang = options.langInfo;
 
-      // add print button
-      context.memo('button.print', function () {
-        // create button
-        var button = ui.button({
-          contents: '<i class="fa fa-print"/> ' + lang.print.print,
-          tooltip: lang.print.print,
-          click: function () {
-            self.$printframe.contents().find('body').html(context.invoke('code'));
-            setTimeout(function () {
-              window.frames.summernotePrintFrame.window.focus();
-              window.frames.summernotePrintFrame.window.print();
-            }, 250);
-          }
-        });
-        // create jQuery object from button instance.
-        var $print = button.render();
-        return $print;
-      });
-
-      this.initialize = function () {
-        var $container = options.dialogsInBody ? $(document.body) : $editor;
-
-        this.$printframe = $(
+      var getPrintframe = function ($container) {
+        var $frame = $(
           '<iframe name="summernotePrintFrame"' +
           'width="0" height="0" frameborder="0" src="about:blank" style="visibility:hidden">' +
           '</iframe>');
-        this.$printframe.appendTo($container.parent());
+        $frame.appendTo($editor.parent());
 
-        var $head = this.$printframe.contents().find('head');
+        var $head = $frame.contents().find('head');
         if (options.print && options.print.stylesheetUrl) {
           // Use dedicated styles
           var css = document.createElement('link');
@@ -87,12 +66,32 @@
             $head.append($(this).clone());
           });
         }
+        
+        return $frame;
       };
 
-      this.destroy = function () {
-        this.$printframe.remove();
-        this.$printframe = null;
-      };
+      // add print button
+      context.memo('button.print', function () {
+        // create button
+        var button = ui.button({
+          contents: '<i class="fa fa-print"/> ' + lang.print.print,
+          tooltip: lang.print.print,
+          click: function () {
+            $frame = getPrintframe();
+            $frame.contents().find('body').html(context.invoke('code'));
+            
+            setTimeout(function () {
+              $frame[0].contentWindow.focus();
+              $frame[0].contentWindow.print();
+              $frame.remove();
+              $frame = null;
+            }, 250);
+          }
+        });
+        // create jQuery object from button instance.
+        var $print = button.render();
+        return $print;
+      });
     }
   });
 }));
