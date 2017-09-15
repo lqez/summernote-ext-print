@@ -26,6 +26,9 @@ $('#summernote').summernote({
 });
 ```
 
+ 4. (Optional) Summernote does not use [Font Awesome](http://fontawesome.io/) by default. But by adding font awesome files on the page, you can see the printer icon inside the print button.
+
+
 OPTIONS
 -------
 
