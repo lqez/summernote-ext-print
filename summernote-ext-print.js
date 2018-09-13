@@ -45,6 +45,23 @@
       var options = context.options;
       var lang = options.langInfo;
 
+      var isFF = function () {
+        const userAgent = navigator.userAgent;
+        const isEdge = /Edge\/\d+/.test(userAgent);
+        return !isEdge && /firefox/i.test(userAgent)
+      }
+
+      var fillContentAndPrint = function($frame, content) {
+        $frame.contents().find('body').html(content);
+
+        setTimeout(function () {
+          $frame[0].contentWindow.focus();
+          $frame[0].contentWindow.print();
+          $frame.remove();
+          $frame = null;
+        }, 250);
+      }
+
       var getPrintframe = function ($container) {
         var $frame = $(
           '<iframe name="summernotePrintFrame"' +
@@ -77,20 +94,19 @@
           contents: '<i class="fa fa-print"/> ' + lang.print.print,
           tooltip: lang.print.print,
           click: function () {
-            $frame = getPrintframe();
-            $frame.contents().find('body').html(context.invoke('code'));
-            
-            setTimeout(function () {
-              $frame[0].contentWindow.focus();
-              $frame[0].contentWindow.print();
-              $frame.remove();
-              $frame = null;
-            }, 250);
+            var $frame = getPrintframe();
+            var content = context.invoke('code');
+
+            if (isFF()) {
+              $frame[0].onload = function () {
+                fillContentAndPrint($frame, content);
+              };
+            } else {
+              fillContentAndPrint($frame, content);
+            }
           }
         });
-        // create jQuery object from button instance.
-        var $print = button.render();
-        return $print;
+        return button.render();
       });
     }
   });
