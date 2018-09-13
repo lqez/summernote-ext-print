@@ -93,6 +93,7 @@
         var button = ui.button({
           contents: '<i class="fa fa-print"/> ' + lang.print.print,
           tooltip: lang.print.print,
+          container: options.container,
           click: function () {
             var $frame = getPrintframe();
             var content = context.invoke('code');
