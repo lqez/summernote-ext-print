@@ -1,22 +1,24 @@
 {
-  "name": "summernote-ext-print",
-  "authors": [
-    "Park Hyunwoo <ez@smartstudy.co.kr>"
-  ],
-  "description": "Print plugin for Summernote",
-  "main": "summernote-ext-print.js",
-  "moduleType": [],
-  "keywords": [
-    "summernote",
-    "print"
-  ],
-  "license": "MIT",
+  "name": "summernote-ext-print-sample",
   "homepage": "https://github.com/lqez/summernote-ext-print",
+  "authors": [
+    "Park Hyunwoo <ez.amiryo@gmail.com>"
+  ],
+  "description": "Test page for summernote-ext-print",
+  "license": "MIT",
   "ignore": [
     "**/.*",
     "node_modules",
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+    "summernote-ext-print": "^0.1.8",
+    "summernote": "^0.8.10",
+    "bootstrap": "^4.1.3",
+    "jquery": "^3.3.1",
+    "popper.js": "^1.14.4"
+  },
+  "main": ""
 }
