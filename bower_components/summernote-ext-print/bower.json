@@ -1,0 +1,22 @@
+{
+  "name": "summernote-ext-print",
+  "authors": [
+    "Park Hyunwoo <ez.amiryo@gmail.com>"
+  ],
+  "description": "Print plugin for Summernote",
+  "main": "summernote-ext-print.js",
+  "moduleType": [],
+  "keywords": [
+    "summernote",
+    "print"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/lqez/summernote-ext-print",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

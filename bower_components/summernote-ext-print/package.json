@@ -1,0 +1,26 @@
+{
+  "name": "summernote-ext-print",
+  "version": "0.1.8",
+  "description": "Print plugin for summernote",
+  "main": "summernote-ext-print.js",
+  "devDependencies": {
+    "summernote": ">=0.7.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lqez/summernote-ext-print"
+  },
+  "keywords": [
+    "summernote",
+    "print"
+  ],
+  "author": "Park Hyunwoo <ez.amiryo@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lqez/summernote-ext-print/issues"
+  },
+  "homepage": "http://lqez.github.io/summernote-ext-print"
+}
