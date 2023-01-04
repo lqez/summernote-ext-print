@@ -27,6 +27,11 @@
       print: {
         print: 'Imprimir'
       }
+    },
+    'fr-FR': {
+      print: {
+        print: 'Imprimer'
+      }
     }
   });
 
